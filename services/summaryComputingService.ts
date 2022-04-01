@@ -3,7 +3,7 @@ export default function summaryComputingService(orders: Order[]) {
   const customersBool: { [key: string]: boolean } = {};
   let orderNumber = 0;
   let numberOfCustomers = 0;
-  let totalRevenue = Math.round(
+  let totalRevenue = Math.floor(
     orders.reduce((previousValue: number, order: Order) => {
       if (!ordersBool[order.order_id]) {
         ordersBool[order.order_id] = true;
@@ -18,7 +18,7 @@ export default function summaryComputingService(orders: Order[]) {
   );
   return {
     totalRevenue,
-    averageRevenue: Math.round((totalRevenue / orderNumber) * 100) / 100,
+    averageRevenue: Math.floor((totalRevenue / orderNumber) * 100) / 100,
     numberOfCustomers,
   };
 }

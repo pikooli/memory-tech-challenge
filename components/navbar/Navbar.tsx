@@ -10,8 +10,10 @@ export default function RootNavbar() {
     <Disclosure as="nav" className="navbar">
       {({ open }) => (
         <div className="flex justify-between">
-          <Link href="/" text={t("navbar")} className="text-2xl uppercase" />
-          {t("todayis")} : {dayjs(new Date()).format("LL")}
+          <Link href="/" text={t("title")} className="text-2xl uppercase" />
+          <div className="my-auto">
+            {t("todayis")} : {dayjs(new Date()).format("LL")}
+          </div>
         </div>
       )}
     </Disclosure>

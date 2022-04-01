@@ -1,10 +1,9 @@
-import { printFormData } from 'utils/printFormData';
+import { printFormData } from "utils/printFormData";
 
 const request = async (url: string, options: any) => {
-  console.log(url, options);
   return await fetch(url, options).then((res) => {
     if (res.status === 401) {
-      console.log('CODE ERROR 401');
+      console.log("CODE ERROR 401");
     }
     if (res.status !== 200) {
       console.log(res.status);
@@ -16,7 +15,7 @@ const request = async (url: string, options: any) => {
 const createFormData = (body: any) => {
   const formData = new FormData();
   for (let k in body) {
-    if (k === 'files') {
+    if (k === "files") {
       body[k].forEach((e: File) => {
         formData.append(`files`, e);
       });
@@ -24,7 +23,7 @@ const createFormData = (body: any) => {
     }
     if (Array.isArray(body[k])) {
       body[k].forEach((e: string, i: number) => {
-        if (typeof body[k][i] === 'object')
+        if (typeof body[k][i] === "object")
           formData.append(`${k}[]`, JSON.stringify(body[k][i]));
         else formData.append(`${k}[]`, body[k][i]);
       });
@@ -58,20 +57,20 @@ type requestParams = {
 //
 const customFetch = async ({
   url,
-  method = 'GET',
+  method = "GET",
   params,
-  body
+  body,
 }: requestParams) => {
   url = params ? urlWithParams(url, params) : url;
   const sendFile = body?.files?.length;
   const formData = sendFile ? createFormData(body) : null;
-  const headers = sendFile ? undefined : { 'Content-Type': 'application/json' };
+  const headers = sendFile ? undefined : { "Content-Type": "application/json" };
   // formData && printFormData(formData);
   return await request(url, {
-    credentials: 'include',
+    credentials: "include",
     method,
     headers: headers,
-    body: sendFile ? formData : JSON.stringify(body)
+    body: sendFile ? formData : JSON.stringify(body),
   }).then((res) => {
     return res;
   });

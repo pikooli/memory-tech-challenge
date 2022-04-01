@@ -1,5 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import fs from "fs";
+import _ from "lodash";
 import summaryComputingService from "services/summaryComputingService";
 import monthlyComputingService from "services/monthlyComputingService";
 import csvToArray from "utils/csvToArray";
@@ -14,7 +15,9 @@ export default async function forgotpassword(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const summary = summaryComputingService(csv);
-  const monthlyRevenue = monthlyComputingService(csv);
+  const { country } = req.query;
+  const datasets = country ? _.filter(csv, ["country", country]) : csv;
+  const summary = summaryComputingService(datasets);
+  const monthlyRevenue = monthlyComputingService(datasets);
   res.json({ summary, monthlyRevenue });
 }

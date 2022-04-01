@@ -1,5 +1,5 @@
 type Obj = {
-  [key: string]: any;
+  [key: string | number]: any;
 };
 
 type FormEvent = React.FormEvent<HTMLFormElement>;

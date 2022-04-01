@@ -2,8 +2,9 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
+
 .navbar {
-  background-color: #102b42;
+  background-color: #01AAFF;
   color: white;
   padding: 10px 20px;
   .nav-item {
@@ -25,5 +26,13 @@
   @apply px-2 border rounded mx-2;
   &.btn-primary {
     @apply bg-sky-600 text-white hover:bg-sky-700;
+  }
+}
+
+.card {
+  @apply border rounded-lg text-white;
+  background-color : #2EB9FC;
+  &:hover {
+    background-color : #209fde
   }
 }
