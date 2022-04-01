@@ -30,6 +30,7 @@ I this test take me around 6-8 hours.
 
 ## Getting Started
 ```
+npm i
 npm run dev
 ```
 
