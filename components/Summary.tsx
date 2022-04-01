@@ -35,7 +35,7 @@ const Summary: React.FC<Props> = ({
   };
 
   return (
-    <div className="grid grid-cols-3 gap-1 my-6">
+    <div className="grid md:grid-cols-3 gap-1 my-6">
       <Display title={t("revenue")} currency number={totalRevenue} />
       <Display title={t("avg")} currency number={averageRevenue} />
       <Display title={t("customers")} number={numberOfCustomers} />
