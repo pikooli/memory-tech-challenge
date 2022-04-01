@@ -9,7 +9,7 @@ import {
   Legend,
   Tooltip,
 } from "chart.js";
-import { Chart } from "react-chartjs-2";
+import { Bar } from "react-chartjs-2";
 
 ChartJS.register(
   LinearScale,
@@ -41,11 +41,10 @@ export type Datasets = {
 type Props = {
   datasets: Datasets[];
   labels: string[];
-  title?: string;
   options?: Obj;
 };
 
-const LineChart: React.FC<Props> = ({ labels, datasets, title, options }) => {
+const LineChart: React.FC<Props> = ({ labels, datasets, options }) => {
   if (!labels || !datasets) {
     return <></>;
   }
@@ -54,9 +53,8 @@ const LineChart: React.FC<Props> = ({ labels, datasets, title, options }) => {
     datasets: datasets,
   };
   return (
-    <Chart
+    <Bar
       options={options ? { ...optionsDefault, ...options } : optionsDefault}
-      type="bar"
       data={data}
     />
   );
